@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var path = require('path');
 
 // create express app
 const app = express();
@@ -29,6 +30,8 @@ mongoose.connect(dbConfig.url, {
 
 
 require('./app/routes/note.routes.js')(app);
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // define a simple route
 app.get('/', (req, res) => {
